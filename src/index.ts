@@ -1,4 +1,4 @@
-import * as database from "./database/address"
+import * as database from "../database/address"
 import * as _ from "lodash"
 import { IReqDistrict, IReqSubDistrict, ICallback } from './interface'
 
