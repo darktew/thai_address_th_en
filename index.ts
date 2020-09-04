@@ -84,4 +84,4 @@ const functionLib = {
   },
 }
 
-module.exports = functionLib
+export = functionLib
