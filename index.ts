@@ -1,4 +1,4 @@
-import * as database from "./database/thai_address_database_en_th"
+import * as database from "./database/address"
 import * as _ from "lodash"
 import { IReqDistrict, IReqSubDistrict, ICallback } from './interface'
 
@@ -84,4 +84,4 @@ const functionLib = {
   },
 }
 
-export default functionLib
+module.exports = functionLib

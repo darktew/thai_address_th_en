@@ -1,6 +1,6 @@
 {
   "name": "thai_address_th_en",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "address thai language thai and english",
   "main": "index.js",
   "scripts": {
