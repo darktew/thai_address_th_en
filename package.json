@@ -7,8 +7,16 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node index.ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:darktew/thai_address_th_en.git"
+  },
+  "bugs": {
+    "url": "https://github.com/darktew/thai_address_th_en/issues"
+  },
   "author": "darktew",
   "license": "ISC",
+  "homepage": "https://github.com/darktew/thai_address_th_en/blob/master/README.md",
   "dependencies": {
     "lodash": "^4.17.20"
   },
