@@ -11,12 +11,12 @@ var functionLib = {
     provinces: function (callback) {
         if (lang === "en") {
             if (typeof callback === "function") {
-                callback(_.uniq(_.map(database, "province_en")));
+                return callback(_.uniq(_.map(database, "province_en")));
             }
         }
         else {
             if (typeof callback === "function") {
-                callback(_.uniq(_.map(database, "province")));
+               return callback(_.uniq(_.map(database, "province")));
             }
         }
     },
@@ -27,10 +27,10 @@ var functionLib = {
         }
         else {
             if (lang === "en") {
-                callback(_.uniq(_.map(_.filter(database, { province_en: req.province }), "amphoe_en")));
+               return callback(_.uniq(_.map(_.filter(database, { province_en: req.province }), "amphoe_en")));
             }
             else {
-                callback(_.uniq(_.map(_.filter(database, { province: req.province }), "amphoe")));
+               return callback(_.uniq(_.map(_.filter(database, { province: req.province }), "amphoe")));
             }
         }
     },
@@ -47,13 +47,13 @@ var functionLib = {
         }
         else {
             if (lang === "en") {
-                callback(_.uniqBy(_.map(_.filter(database, {
+               return callback(_.uniqBy(_.map(_.filter(database, {
                     province_en: req.province,
                     amphoe_en: req.district
                 }), function (e) { return ({ subDistrict: e.district_en, zipcode: e.zipcode }); }), function (v) { return JSON.stringify([v.subDistrict, v.zipcode]); }));
             }
             else {
-                callback(_.uniqBy(_.map(_.filter(database, {
+               return callback(_.uniqBy(_.map(_.filter(database, {
                     province: req.province,
                     amphoe: req.district
                 }), function (e) { return ({ subDistrict: e.district, zipcode: e.zipcode }); }), function (v) { return JSON.stringify([v.subDistrict, v.zipcode]); }));
