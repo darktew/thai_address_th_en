@@ -1,11 +1,10 @@
 {
   "name": "thai_address_th_en",
-  "version": "1.0.5",
+  "version": "1.0.5-beta01",
   "description": "address thai language thai and english",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node src.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

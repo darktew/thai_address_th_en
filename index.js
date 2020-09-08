@@ -4,7 +4,7 @@ var _ = require("lodash");
 var lang = "th";
 var functionLib = {
     locale: function (language) {
-        lang = language.toLocaleLowerCase();
+        lang = language;
         return lang;
     },
     // GET Provinces
