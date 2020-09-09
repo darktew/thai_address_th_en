@@ -92,96 +92,68 @@ var functionLib = {
     }
   },
   convertTHToEN: function (req, callback) {
-    if (lang === "en") {
-      if (req.type === "p") {
-        return callback(
-          _.reduce(
-            _.filter(database, { province_en: req.data.province }),
-            (prev, curr) => {
-              prev = curr.province
-              return prev
-            },
-            ""
-          )
+    if (req.type === "p") {
+      return callback(
+        _.reduce(
+          _.filter(database, (e) => {
+            if (
+              e.province_en === req.data.province ||
+              e.province === req.data.province
+            )
+              return e
+          }),
+          (prev, curr) => {
+            return lang === "en"
+              ? (prev = curr.province_en)
+              : (prev = curr.province)
+          },
+          ""
         )
-      } else if (req.type === "d") {
-        return callback(
-          _.reduce(
-            _.filter(database, {
-              province_en: req.data.province,
-              amphoe_en: req.data.district,
-            }),
-            (prev, curr) => {
-              prev = curr.amphoe
-              return prev
-            },
-            ""
-          )
+      )
+    } else if (req.type === "d") {
+      return callback(
+        _.reduce(
+          _.filter(database, (e) => {
+            if (
+              (e.province_en === req.data.province ||
+                e.province === req.data.province) &&
+              (e.amphoe === req.data.district ||
+                e.amphoe_en === req.data.district)
+            )
+              return e
+          }),
+          (prev, curr) => {
+            return lang === "en"
+              ? (prev = curr.amphoe_en)
+              : (prev = curr.amphoe)
+          },
+          ""
         )
-      } else if (req.type === "sd") {
-        return callback(
-          _.reduce(
-            _.filter(database, {
-              province_en: req.data.province,
-              amphoe_en: req.data.district,
-              district_en: req.data.subDistrict,
-            }),
-            (prev, curr) => {
-              prev.subDistrict = curr.district
-              prev.zipcode = curr.zipcode
-              return prev
-            },
-            { subDistrict: "", zipcode: "" }
-          )
+      )
+    } else if (req.type === "sd") {
+      return callback(
+        _.reduce(
+          _.filter(database, (e) => {
+            if (
+              (e.province_en === req.data.province ||
+                e.province === req.data.province) &&
+              (e.amphoe === req.data.district ||
+                e.amphoe_en === req.data.district) &&
+              (e.district === req.data.subDistrict ||
+                e.district_en === req.data.subDistrict)
+            )
+              return e
+          }),
+          (prev, curr) => {
+            return lang === "en"
+              ? (prev = { subDistrict : curr.district_en, zipcode : curr.zipcode })
+              : (prev = { subDistrict : curr.district, zipcode : curr.zipcode })
+          },
+          { subDistrict : "", zipcode : ""}
         )
-      } else {
-        return callback(null, new Error(`Not type ${req.type}`))
-      }
+      )
     } else {
-      if (req.type === "p") {
-        return callback(
-          _.reduce(
-            _.filter(database, { province: req.data.province }),
-            (prev, curr) => {
-              prev = curr.province_en
-              return prev
-            },
-            ""
-          )
-        )
-      } else if (req.type === "d") {
-        return callback(
-          _.reduce(
-            _.filter(database, {
-              province: req.data.province,
-              amphoe: req.data.district,
-            }),
-            (prev, curr) => {
-              prev = curr.amphoe_en
-              return prev
-            },
-            ""
-          )
-        )
-      } else if (req.type === "sd") {
-        return callback(
-          _.reduce(
-            _.filter(database, {
-              province: req.data.province,
-              amphoe: req.data.district,
-              district: req.data.subDistrict,
-            }),
-            (prev, curr) => {
-              prev.subDistrict = curr.district_en
-              prev.zipcode = curr.zipcode
-              return prev
-            },
-            { subDistrict: "", zipcode: "" }
-          )
-        )
-      } else {
-        return callback(null, new Error(`Not type ${req.type}`))
-      }
+        return callback(null, new Error(`Not type ${req.type} use type p,d,sd`))
     }
   },
 }
