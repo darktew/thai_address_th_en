@@ -8,13 +8,10 @@ var functionLib = {
     return lang
   },
   // GET Provinces
-  provinces: function (req, callback) {
+  provinces: function (callback) {
     if (lang === "en") {
       if (typeof callback === "function") {
         return callback(_.uniq(_.map(database, "province_en")))
-      }
-      if (req) {
-        return callback(_.uniq(_.map()))
       }
     } else {
       if (typeof callback === "function") {
