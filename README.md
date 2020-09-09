@@ -21,8 +21,12 @@ THAI_ADDRESS_TH_EN
   ```
     const address = require('thai_address_th_en')
     
-    address.district("กรุงเทพ", (res) => {
+    address.district("กรุงเทพ", (res,err) => {
+     if(err) {
+      console.error(err)
+     } else {
       console.log("district : ", res)
+     }
     })
     
   ```
@@ -31,8 +35,12 @@ THAI_ADDRESS_TH_EN
    ```
     const address = require('thai_address_th_en')
     
-    address.subDistrict("กรุงเทพ","มีนบุรี",(res) => {
+    address.subDistrict("กรุงเทพ","มีนบุรี",(res,err) => {
+     if(err) {
+       console.error(err)
+     } else {
       console.log("subDistrict :", res)
+     }
     })
     
       Object return => [ { subDistrict : "example", zipcode: "example" } ]
@@ -43,5 +51,22 @@ THAI_ADDRESS_TH_EN
   ```
   address.locale("en")
   Default locale => th
+  ```
+  
+  - convert TH to EN & EN to TH
+  ```
+  const address = require('thai_address_th_en')
+  
+  // type enum = ["p", "d", "sd"]
+  // type p and d return string address value
+  // type sd return value => { subDistrict : subDistrictValue, zipcode : zipcodeValue }
+  
+  address.convertTHToEN({ type: "p", data: { province: "ปทุมธานี" }  }, (res,err) => {
+    if(err) {
+     console.error(err)
+    } else {
+     console.log(res)
+    }
+  })
   ```
    
