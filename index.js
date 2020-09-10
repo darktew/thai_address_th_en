@@ -7,6 +7,7 @@ var functionLib = {
     lang = language
     return lang
   },
+  language: function () { return lang },
   // GET Provinces
   provinces: function (callback) {
     if (lang === "en") {
