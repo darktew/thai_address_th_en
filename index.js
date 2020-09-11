@@ -7,40 +7,38 @@ var functionLib = {
     lang = language
     return lang
   },
-  language: function () { return lang },
+  language: function () {
+    return lang
+  },
   // GET Provinces
   provinces: function (callback) {
-    if (lang === "en") {
-      if (typeof callback === "function") {
-        return callback(_.uniq(_.map(database, "province_en")))
-      }
-    } else {
-      if (typeof callback === "function") {
-        return callback(_.uniq(_.map(database, "province")))
-      }
+    if(typeof callback === "function") {
+      return callback(_.uniq(_.map(database, (e) => { return lang === 'en' ? e.province_en : e.province }).sort()))
     }
+    
   },
   // GET District By Province
   district: function (req, callback) {
     if (!req.province) {
       return callback(null, new Error("Not province"))
     } else {
-      if (lang === "en") {
-        return callback(
-          _.uniq(
-            _.map(
-              _.filter(database, { province_en: req.province }),
-              "amphoe_en"
-            )
-          )
+      return callback(
+        _.uniq(
+          _.map(
+            _.filter(database, (res) => {
+              if (
+                res.province_en === req.province ||
+                res.province === req.province
+              ) {
+                return res
+              }
+            }),
+            (e) => {
+              return lang === "en" ? e.amphoe_en : e.amphoe
+            }
+          ).sort()
         )
-      } else {
-        return callback(
-          _.uniq(
-            _.map(_.filter(database, { province: req.province }), "amphoe")
-          )
-        )
-      }
+      )
     }
   },
   // GET SubDistrict and Zipcode By Province and District
@@ -52,41 +50,31 @@ var functionLib = {
     } else if (!req.district) {
       return callback(null, new Error("Not amphoe"))
     } else {
-      if (lang === "en") {
-        return callback(
-          _.uniqBy(
-            _.map(
-              _.filter(database, {
-                province_en: req.province,
-                amphoe_en: req.district,
-              }),
-              function (e) {
+      return callback(
+        _.uniqBy(
+          _.map(
+            _.filter(database, (res) => {
+              if (
+                ((res.province_en === req.province ||
+                  res.province === req.province) &&
+                  (res.amphoe_en === req.district ||
+                    res.amphoe === req.district))) {
+                      return res
+                    }
+            }),
+            function (e) {
+              if (lang === "en") {
                 return { subDistrict: e.district_en, zipcode: e.zipcode }
-              }
-            ),
-            function (v) {
-              return JSON.stringify([v.subDistrict, v.zipcode])
-            }
-          )
-        )
-      } else {
-        return callback(
-          _.uniqBy(
-            _.map(
-              _.filter(database, {
-                province: req.province,
-                amphoe: req.district,
-              }),
-              function (e) {
+              } else {
                 return { subDistrict: e.district, zipcode: e.zipcode }
               }
-            ),
-            function (v) {
-              return JSON.stringify([v.subDistrict, v.zipcode])
             }
-          )
+          ).sort(),
+          function (v) {
+            return JSON.stringify([v.subDistrict, v.zipcode])
+          }
         )
-      }
+      )
     }
   },
   convertTHToEN: function (req, callback) {
@@ -144,14 +132,17 @@ var functionLib = {
           }),
           (prev, curr) => {
             return lang === "en"
-              ? (prev = { subDistrict : curr.district_en, zipcode : curr.zipcode })
-              : (prev = { subDistrict : curr.district, zipcode : curr.zipcode })
+              ? (prev = {
+                  subDistrict: curr.district_en,
+                  zipcode: curr.zipcode,
+                })
+              : (prev = { subDistrict: curr.district, zipcode: curr.zipcode })
           },
-          { subDistrict : "", zipcode : ""}
+          { subDistrict: "", zipcode: "" }
         )
       )
     } else {
-        return callback(null, new Error(`Not type ${req.type} use type p,d,sd`))
+      return callback(null, new Error(`Not type ${req.type} use type p,d,sd`))
     }
   },
 }

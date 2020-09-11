@@ -2672,7 +2672,7 @@ module.exports = [
         "amphoe_code": "1003",
         "province_code": "10",
         "district_en": "Krathum Rai",
-        "amphoe_en": " Nong Chok",
+        "amphoe_en": "Nong Chok",
         "province_en": "Bangkok"
     },
     {
@@ -2684,7 +2684,7 @@ module.exports = [
         "amphoe_code": "1003",
         "province_code": "10",
         "district_en": "Khlong Sip",
-        "amphoe_en": " Nong Chok",
+        "amphoe_en": "Nong Chok",
         "province_en": "Bangkok"
     },
     {
@@ -2696,7 +2696,7 @@ module.exports = [
         "amphoe_code": "1003",
         "province_code": "10",
         "district_en": "Khlong Sip Song",
-        "amphoe_en": " Nong Chok",
+        "amphoe_en": "Nong Chok",
         "province_en": "Bangkok"
     },
     {
@@ -2708,7 +2708,7 @@ module.exports = [
         "amphoe_code": "1003",
         "province_code": "10",
         "district_en": "Khu Fang Nuea",
-        "amphoe_en": " Nong Chok",
+        "amphoe_en": "Nong Chok",
         "province_en": "Bangkok"
     },
     {
@@ -2720,7 +2720,7 @@ module.exports = [
         "amphoe_code": "1003",
         "province_code": "10",
         "district_en": "Khok Faet",
-        "amphoe_en": " Nong Chok",
+        "amphoe_en": "Nong Chok",
         "province_en": "Bangkok"
     },
     {
@@ -2732,7 +2732,7 @@ module.exports = [
         "amphoe_code": "1003",
         "province_code": "10",
         "district_en": "Lam Toiting",
-        "amphoe_en": " Nong Chok",
+        "amphoe_en": "Nong Chok",
         "province_en": "Bangkok"
     },
     {
@@ -2744,7 +2744,7 @@ module.exports = [
         "amphoe_code": "1003",
         "province_code": "10",
         "district_en": "Lam Phak Chi",
-        "amphoe_en": " Nong Chok",
+        "amphoe_en": "Nong Chok",
         "province_en": "Bangkok"
     },
     {
@@ -2756,7 +2756,7 @@ module.exports = [
         "amphoe_code": "1003",
         "province_code": "10",
         "district_en": "Nong Chok",
-        "amphoe_en": " Nong Chok",
+        "amphoe_en": "Nong Chok",
         "province_en": "Bangkok"
     },
     {
