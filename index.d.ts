@@ -1,0 +1,1 @@
+declare module 'thai_address_th_en'
